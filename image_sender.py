@@ -3,12 +3,16 @@
 import socket
 import imagezmq
 import cv2
+import json
 
 
 def dibujar_detecciones(frame, data_json):
     """
     Dibuja cajas y etiquetas basadas en el JSON del servidor.
     """
+    if isinstance(data_json, (bytes, bytearray)):
+        data_json = json.loads(data_json)
+
     boxes = data_json.get("boxes", [])
     confidences = data_json.get("confidences", [])
     classes = data_json.get("classes", [])
