@@ -9,7 +9,6 @@ image_hub = imagezmq.ImageHub()
 while True:  # show streamed images until Ctrl-C
     print('Servidor en escucha')
     rpi_name, image = image_hub.recv_image()
-    #image_hub.send_reply(b'OK')
     results = model(image)
     # Ejemplo de cómo extraer datos de 'results[0].boxes'
     boxes = results[0].boxes
@@ -31,5 +30,3 @@ while True:  # show streamed images until Ctrl-C
 
     results_json = json.dumps(master).encode('ascii')
     image_hub.send_reply(results_json)
-    #annotated_frame = results[0].plot()
-    #sender.send_image(rpi_name, annotated_frame)
