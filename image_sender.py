@@ -3,7 +3,10 @@
 import imagezmq
 import cv2
 from tools import (dibujar_boxes, 
-                   get_boxes)
+                   get_boxes,
+                   dibujar_keypoints,
+                   get_keypoints,
+                   POSE_CONNECTIONS)
 import dotenv
 import os
 
@@ -34,6 +37,8 @@ while True:  # send images as stream until Ctrl-C
     frame_boxes = dibujar_boxes(frame.copy(),
                               get_boxes(results))
     
-    cv2.imshow('frame_boxes', frame_boxes)
+    frame_keypoints = dibujar_keypoints(frame_boxes.copy(), get_keypoints(results))
+    
+    cv2.imshow('frame_boxes', frame_keypoints)
     cv2.waitKey(1)
     
