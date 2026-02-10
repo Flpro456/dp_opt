@@ -1,0 +1,1 @@
+En la máquina donde pongas el server, debes asegurarte de tener instalado el paquete "ultralytics"
