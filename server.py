@@ -11,12 +11,12 @@ while True:  # show streamed images until Ctrl-C
     rpi_name, image = image_hub.recv_image()
     #image_hub.send_reply(b'OK')
     results = model(image)
-    # Ejemplo de cómo extraer datos de 'results[0].boxes'
-    boxes = results[0].boxes
+    # Ejemplo de cómo extraer datos de 'results[0].keypoints'
+    keypoints = results[0].keypoints
     results_dic = {
-        "boxes": boxes.xyxy.tolist(),      # Coordenadas en formato lista
-        "confidences": boxes.conf.tolist(), # Confidencias
-        "classes": boxes.cls.tolist()       # IDs de las clases
+        "keypoints": keypoints.xyxy.tolist(),      # Coordenadas en formato lista
+        "confidences": keypoints.conf.tolist(), # Confidencias
+        "classes": keypoints.cls.tolist()       # IDs de las clases
     }
 
     results_json = json.dumps(results_dic).encode('ascii')
